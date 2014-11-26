@@ -15,3 +15,18 @@ The author most often doesn't use prosa text but heavily uses some basic git com
 3> git config --global core.editor emacs
 4> git config --list
 ```
+
+# Getting a Repository
+1. Initialize the working directory as an empty git repository
+2. Clone the repository _git\_training_ into the subfolder _git\_training_
+3. Clone the repository _git\_training_ into the subfolder _training_
+4. Clone the branch _my\_branch_ of the repository _git_training_ into the subfolder _git\_training_ (the _--branch_ switch also allows to clone tags)
+
+```sh
+# details: man git-init
+1> git init
+# details: man git-clone
+2> git clone git@github.com:lgeorgieff/git_training.git
+3> git clone git@github.com:lgeorgieff/git_training.git training
+4> git clone --branch my_branch git@github.com:lgeorgieff/git_training.git
+```
