@@ -83,3 +83,33 @@ The author most often doesn't use prosa text but heavily uses some basic git com
 5> /doc/*/*.docx
 6> !important.docx
 ```
+
+# Committing Changes
+1. Commit all staged changes to the local repository
+2. Stage all unstaged changes and commit it along with the comment _"..."_
+3. Show the log of the repository
+4. Show the log of the repository in the form of a commit per line
+5. Show the log of the repository including a diff for each commit
+6. Show the log of the repository including a compact diff for each commit
+7. Show the log of the repository formatted as "short hash - author name, author date : subject"
+8. Show the log of the repository in the form of a commit per line and displaying the branches as a graph
+9. Show the log of the repository for the last two days
+10. Show all logs with a short SHA-1 value
+11. Show the log message of the commit _940c980_
+
+```sh
+# details: man git-commit
+ 1> git commit
+ 2> git commit -a -m "..."
+# details: man git-log
+ 3> git log
+ 4> git log --oneline
+ 5> git log -p
+ 6> git log --stat
+ 7> git log --pretty=format:"%h - %an, %ar : %s"
+ 8> git log --oneline --graph
+ 9> git log --since=2.days
+10> git log --abbrev-commit
+# details: man git-show
+11> git show 940c980
+```
