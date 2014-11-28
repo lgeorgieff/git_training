@@ -113,3 +113,78 @@ The author most often doesn't use prosa text but heavily uses some basic git com
 # details: man git-show
 11> git show 940c980
 ```
+
+# Changing the History
+1. Change the last commit
+2. Reset all unstaged changes of the file _README.md_ to the version of the last commit
+3. Reset the local repository to the commit _36b01dc_
+4. Checkout the last version of _README.md_ and replace the local file on the file system by it
+5. Change the history (commits) on top of the commit _36b01dc_
+6. List all SHA-1 values for commits where the _HEAD_ and branch references pointed to. This can be very helpful after rewriting the history by using _git rebase_, since the overwritten references are still tracked in the _reflog_
+7. Show the hash of the commit on which the master reference is pointing
+8. Create a new commit that undoes the changes made in the commit _2c1e336_
+
+```sh
+# details: man git-commit
+1> git commit --amend
+# details: man git-reset
+2> git reset HEAD README.md
+3> git reset 36b01dc --hard
+# details: man git-checkout
+4> git checkout -- README.md
+# details: man git-rebase
+5> git rebase -i 36b01dc
+# details: man git-reflog
+6> git reflog
+# details: man git-rev-parse
+7> git rev-parse master
+# details: git-revert
+8> git revert 2c1e336
+```
+
+## Rebasing
+Rebasing allows to integrate two branches into a "single line" (after the rebase it seems that there existed only one branch). The results of rebasing are similar to merging except that there is only one final branch. An example rebase works as follows:
+
+1. Checkout the branch _my\_branch_ which changes should be put on top of the branch _master_
+2. Rebase the current branch on top of the branch _master_
+3. Checkout the rebased branch _master_
+4. Perform a _fast-forward_ merge (since the _master_ pointer is behind the _my\_branch_ pointer)
+
+```sh
+1> git checkout my_branch
+2> git rebase master
+3> git checkout master
+4> git merge
+```
+
+## Interactive Rebasing
+Interactive rebasing allows to change the entire history of the git repository.
+With _git rebase -i <commit hash>_ it is possible to select the start point from which the history is changed, i.e. the first changeable commit is the commit that follows after the specified one.
+Afterwards the default editor appears with all commits listed (on top of the specified one). It is possible to
+* __reorder__: by changing the order of the commits
+* __pick__: (default) each commit that is annotated as _pick_ is used in the history
+* __reword__: the commit message is changed
+* __edit__: the entire commit can be changed (sources and commit message)
+* __squash__: the commit is melt into the previous commit, the commit message can be changed
+* __fixup__: the commit is melt into the previous commit, but the commit message of the current commit is discarded
+* __exec__: the specified command at the end of the line is executed
+
+the commits.
+
+Note the history is rewritten, i.e. there are used different commit IDs and usually a _git push --force_ is required to write the changes into the remote repository. Also take into account, that others working with the current version of the repository may get in real trouble since their version of the repository won't exist after you commit the rebased changes.
+
+1. Start the rebase process on top of the commit _9fc7ad5_
+2. Stage the file _README.md_
+ * Add the latest changes of the file _README.md_ of the current commit to the staging area
+ * Or resolve a conflict of the file _README.md_ caused by the changes already done and the next commit
+4. Change the currently selected commit in the rebase process
+5. Go to the next commit during the rebase process (is required after amending a commit or resolving a conflict)
+6. Abort the entire rebase process and revert all done changes during the rebase process
+
+```sh
+1> git rebase -i 9fc7ad5
+2> git add README.md
+3> git commit --amend
+4> git rebase --continue
+5> git rebase --abort
+```
