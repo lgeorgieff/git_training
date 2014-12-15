@@ -242,3 +242,35 @@ Note the history is rewritten, i.e. there are used different commit IDs and usua
 23> git branch --set-upstream origin hotfix_4
 24> git branch -m new_branch_name
 ```
+
+# Tagging
+1. List all existing tags.
+2. List all existing tags starting with _v2._
+3. Create an annotated tag named _v2.5_ with the commit message _..._
+4. Show information for the tag _v2.5_
+5. Create a lightweight tag named _v2.5.1_
+6. Create an annotated tag named _v2.6_ for the commit _bc8bc0c_
+7. Push the tag _v2.5_ to _origin_ (by default tags are not pushed to remote repositories)
+8. Push all tags to _origin_
+9. Checkout the tag _v2.5_
+10. Checkout the tag _v2.5_
+11. Produce a human readable (version) name based on the nearest tag and the number of commits on top of it followed by a short SHA-1 value
+12. Generate an archive of the current state of the branch _master_ (for those who have no git and cannot use _git tag_)
+
+```sh
+# details: man git-tag
+ 1> git tag
+ 2> git tag -l "v2.*"
+ 3> git tag -a "v2.5" -m "..."
+ 4> git show v2.5
+ 5> git tag v2.5.1
+ 6> git tag -a v2.6 bc8bc0c
+ 7> git push origin v2.5
+ 8> git push origin --tags
+ 9> git checkout v2.5
+10> git checkout tags/v2.5
+# details: man git-decribe
+11> git describe master
+# details: man git-archive
+12> git archive master | gzip > $(git describe master).tar.gz
+```
