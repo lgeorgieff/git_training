@@ -92,7 +92,7 @@ The author most often doesn't use prosa text but heavily uses some basic git com
 5. Show the log of the repository including a diff for each commit
 6. Show the log of the repository including a compact diff for each commit
 7. Show the log of the repository formatted as "short hash - author name, author date : subject"
-8. Show the log of the repository in the form of a commit per line and displaying the branches as a graph
+8. Show the log of the repository in the form of a commit per line and displaying the committs and branches as a graph
 9. Show the log of the repository for the last two days
 10. Show all logs with a short SHA-1 value
 11. Show the log message of the commit _940c980_
@@ -273,4 +273,40 @@ Note the history is rewritten, i.e. there are used different commit IDs and usua
 11> git describe master
 # details: man git-archive
 12> git archive master | gzip > $(git describe master).tar.gz
+```
+
+# Remote Repositories
+1. List all configured remote entities
+2. Add the remote entity _<uri>_ as _remote_entity_ in addition to _origin_
+3. Show additional information of the remote entity _remote_entity_
+4. Rename the remote entity _remote_entity_ to _re_
+5. Remove the remote entity _re_
+6. Fetch data from the remote entity _remote_entity_
+7. Fetch data from the remote entity _origin_ (default)
+8. Merge the fetched _master_ branch from _remote_entity_ into the current branch
+9. Pull (fetch and merge) data from the remote entity _remote_entity_
+10. Pull data from the remote entity _origin_ (default)
+11. Push the local commits to the remote entity _remote_entity_
+12. Push the local commits to the remote entity _origin_ (default)
+13. Generates output that summarizes the forked work inside the local branch _forked\_branch_ which can be sent to the maintainer of the remote repository _origin/master_. Finally, the maintainer of _origin/master_ can pull the changes from _forked\_branch_ and integrate them into _origin/master_
+
+```sh
+# details: man git-remote
+ 1> git remote -v
+ 2> git remote add remote_entity <uri>
+ 3> git remote show remote_entity
+ 4> git remote rename remote_entity re
+ 5> git remote rm re
+# details: man git-fetch
+ 6> git fetch remote_entity
+ 7> git fetch
+ 8> git merge remote_entity/master
+# details: man git-pull
+ 9> git pull remote_entity
+10> git pull
+# details: man git-push
+11> git push remote_entity
+12> git push
+# details: man git-request-pull
+13> git request-pull origin/master forked_branch
 ```
