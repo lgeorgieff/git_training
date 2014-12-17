@@ -188,3 +188,57 @@ Note the history is rewritten, i.e. there are used different commit IDs and usua
 4> git rebase --continue
 5> git rebase --abort
 ```
+
+# Branching
+1. Create a new local branch named _new\_branch_
+2. Create a new local branch named _very\_new\_branch_ based on the branch _new\_branch_
+3. List all local branches
+4. List all local and remote branches
+5. List all branches that were merged into the current branch
+6. List all brnaches that were not merged into the current branch
+7. Switch into the branch _new\_branch_ (tis branch must already exist)
+8. Create the branch _new\_branch_ and immediately switch to it
+9. Merges the branch _new\_branch_ into the current branch
+10. Show the common ancestor version of the file _README.md_ when your repository is in a conflict state
+11. Show the version of the current branch of the file _README.md_ when your repository is in a conflict state
+12. Show the version of the file _README.md_ from the branch your are merging in when your repository is in a conflict state
+13. Try to revert the merge and go back to the state before the merge operation
+14. Merge the branch _origin/master_ into the current branch while using the _theirs_ merge strategy, i.e. the changes from _origin/master_ are privileged
+15. Merge the branch _origin/master_ into the current branch while using the _ours_ merge strategy, i.e. the changes from the current branch are privileged
+16. Delete the local branch _new\_branch_
+17. Delete the remote branch _new\_branch_ (the local branch remains)
+18. Push the current branch to _origin/new\_branch_
+19. Push the branch _new\_branch_ to _origin/hotfix\_1_
+20. Push the branch _new\_branch_ to _origin/other\_branch_ and directly set the upstream branch for _new\_branch_ to _origin/other\_branch_
+21. Checkout the remote branch _origin/hotfix\_2_ into the local (and tracking) branch _hotfix\_2_
+22. Checkout the remote branch _origin/hotfix\_3_ into the local (and tracking) branch _very\_new\_branch_
+23. Set the upstream branch of the current branch to _origin/hotfix\_4_
+24. Rename the current branch to _new\_branch\_name_
+
+```sh
+# details: man git-branch
+ 1> git branch new_branch
+ 2> git branch very_new_branch origin/new_branch
+ 3> git branch
+ 4> git branch -a
+ 5> git branch --merged
+ 6> git branch --no-merged
+ 7> git checkout new_branch
+ 8> git checkout -b new_branch
+ 9> git merge new_branch
+10> git show :1:README.md > README.md.common
+11> git show :2:README.md > README.md.ours
+12> git show :3:README.md > README.md.theirs
+13> git merge --strategy-option=theirs origin/master
+14> git merge --strategy-option=ours origin/master
+15> git merge --abort
+16> git branch --delete new_branch
+17> git push origin --delete new_branch
+18> git push origin new_branch
+19> git push origin new_branch:hotfix_1
+20> git push --set-upstream origin new_branch:other_branch
+21> git checkout --track origin/hotfix_2
+22> git checkout -b very_new_branch origin/hotfix_3
+23> git branch --set-upstream origin hotfix_4
+24> git branch -m new_branch_name
+```
