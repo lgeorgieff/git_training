@@ -310,3 +310,18 @@ Note the history is rewritten, i.e. there are used different commit IDs and usua
 # details: man git-request-pull
 13> git request-pull origin/master forked_branch
 ```
+
+# Patches
+1. Check whether the patch _/tmp/hotfix_1.patch_ which was generated with the command _git diff_ applies cleanly to the current branch
+2. Apply the patch _/tmp/hotfix_1.patch_ which was generated with the command _git diff_ to the current branch
+3. Apply the patch(es) stored in _/tmp/hotfix_1.patch_ which are in the _mbox_ format and may contain several patches (generated with _git diff_). In addition meta data is also applied, such as commit message, author, ... (_git am_ uses _git apply_ in the background)
+4. Set the current state to resolved after a conflict resulting from applying a patch with _git am_ was manually resolved
+
+```sh
+# details: man git-apply
+1> git apply --check /tmp/hotfix_1.patch
+2> git apply /tmp/hotfix_1.patch
+# details: man git-am
+3> git am /tmp/hotfix_1.patch
+4> git am --resolved
+```
