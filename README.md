@@ -325,3 +325,43 @@ Note the history is rewritten, i.e. there are used different commit IDs and usua
 3> git am /tmp/hotfix_1.patch
 4> git am --resolved
 ```
+
+# Advanced Syntax
+
+## Ancestry References
+With the _^_ character at the end of a reference it is possible to get the first parent of the specified reference. _^_ is a shothand for _^1_. It is also possible to select the second parent of a reference by specifying _^2_. This syntax is useful for merge commits only.
+
+With the _~_ character at the end of a reference it is possible to get the first parent of the specified reference. _~_ is a shorthand for _~1_. It is also possible to select an arbitrary parent of a reference by specifying a number after the _~_ character, e.g. _~4_ for the fourth (first) parent.
+
+
+1. Show the first parent of _HEAD_
+2. Show the first parent of _HEAD_
+3. Show the second parent of _8d8e119_
+4. Show the first parent of _HEAD_
+5. Show the first parent of _HEAD_
+6. Show the first parent of the first parent of _8d8e119_
+7. Show the first parent of the second parent of _HEAD_
+
+```sh
+1> git show HEAD^
+2> git show HEAD^1
+3> git show 8d8e119^2
+4> git show HEAD~
+5> git show HEAD~1
+6> git show 8d8e119~2
+7> git show HEAD^2~1
+```
+
+## Commit Ranges
+1. Show all committs between the commit _1822178_ and _HEAD_
+2. Show all committs between the commit _1822178_ and _HEAD_
+3. Show all committs between the commit _1822178_ and _b9e0daa_
+4. Show all commits that belong to the current branch which is referenced by _HEAD_ but are not merged into the _origin/master_ branch
+
+```sh
+1> git log 1822178..HEAD
+2> git log 1822178
+3> git log 1822178..b9e0daa
+4> git log origin/master..HEAD
+```
+
