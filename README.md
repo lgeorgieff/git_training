@@ -365,3 +365,30 @@ With the _~_ character at the end of a reference it is possible to get the first
 4> git log origin/master..HEAD
 ```
 
+# Stash
+1. Add the uncommitted changes from tracked files to the stash area
+2. List all changes stored in the stash
+3. Apply the stash _stash@{0}_ to the working directory
+4. Apply the stash _stash@{2}_ to the working directory
+5. Apply the stash _stash@{0}_ to the working directory and to the staging area
+6. Drop the changes stored in _stash@{0}_ from the stash area without applying it
+7. Apply the changes stored in _stash@{2}_ to the working directory and drop it finally
+8. Add the uncommitted changes of tracked and untracked files to the stash area
+9. Create the new branch _new\_branch_, checkout the commit the stashed work depends on and apply the stashed work on the new branch
+10. Show a summary of the changes stored in the stash _stash@{0}_
+11. Show a summary and a diff of the changes stored in the stash _stash@{2}_
+
+```sh
+# details: man git-stash
+ 1> git stash
+ 2> git stash list
+ 3> git stash apply
+ 4> git stash apply stash@{2}
+ 5> git stash apply --index
+ 6> git stash drop stash@{0}
+ 7> git stash pop stash@{2}
+ 8> git stash --include-untracked
+ 9> git stash branch new_branch
+10> git stash show
+11> git stash show stash@{2} -p
+```
