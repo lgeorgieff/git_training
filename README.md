@@ -392,3 +392,30 @@ With the _~_ character at the end of a reference it is possible to get the first
 10> git stash show
 11> git stash show stash@{2} -p
 ```
+
+# Searching
+1. Search for all occurrences of ".\*stash.\*" in all tracked files while ignoring lower and upper case and displaying the line of each occurrence
+2. Search for all occurrences of ".\*stash.\*" that most probably are used as functions or methods in all tracked files
+3. Search for all occurrences of ".\*stash.\*" that exist within files ending with _.md_
+4. Search for all log messages that contain the substring _stash_ while ignoring upper and lower case
+5. Show what revision and author last modified each line of the file _README.md_
+6. Show what revision and author last modified the lines _10_ to _15_ of the file _README.md_
+7. Show what revision and author last modified the lines _10_ to _15_ of the file _README.md_
+8. Show what revision and author last modified the lines _10_ to _15_ of the file _README.md_ inside the branch _master_
+9. Show what revision and author last modified the lines _10_ to _15_ of the file _README.md_ starting from the commit _affd0ba_
+10. Show what revision and author last modified the lines _10_ to _15_ of the file _README.md_. In addition try to find out where the lines came from, i.e. when copied from other files into _README.md_
+
+```sh
+# details: man git-grep
+ 1> git grep -n -i stash
+ 2> git grep -p -i stash
+ 3> git grep stash *.md
+ 4> git log -Sstash
+# details: man git-blame
+ 5> git blame README.md
+ 6> git blame -L 10,15 README.md
+ 7> git blame -L 10,+6 README.md
+ 8> git blame -L 10,+6 master README.md
+ 9> git blame -L 10,+6 affd0ba README.md
+10> git blame -C -L 10,+6 README.md
+```
