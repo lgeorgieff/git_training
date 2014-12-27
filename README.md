@@ -419,3 +419,16 @@ With the _~_ character at the end of a reference it is possible to get the first
  9> git blame -L 10,+6 affd0ba README.md
 10> git blame -C -L 10,+6 README.md
 ```
+
+# Debugging
+1. Start a binary search for a bug in the repository
+2. Set the current commit as _bad_ (contains a bug)
+3. Set the commit _d8f4811_ as good (doesn't contain a bug)
+4. Reset _HEAD_ to the position it was before the binary search when the bug was found
+
+```sh
+1> git bisect start
+2> git bisect bad
+3> git bisect good d8f4811
+4> git bisect reset
+```
