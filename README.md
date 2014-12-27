@@ -432,3 +432,20 @@ With the _~_ character at the end of a reference it is possible to get the first
 3> git bisect good d8f4811
 4> git bisect reset
 ```
+
+# Submodules
+1. Add a submodule located at _git@github.com:lgeorgieff/csv-processor.git_
+2. Add a submodule located at _git@github.com:lgeorgieff/csv-processor.git_ in the directory _csv_
+3. Initialize the the submodules configuration (_.gitmodules_)
+4. Fetch and chekc out all data from the submodule repository
+5. Clone the repository and automatically fetch and update all submodules
+6. Fetch and apply remote changes into the local submodule
+
+```sh
+1> git submodule add git@github.com:lgeorgieff/csv-processor.git
+2> git submodule add git@github.com:lgeorgieff/csv-processor.git csv
+3> git submodule init
+4> git submodule update
+5> git clone --recursive git@github.com:lgeorgieff/git_training.git
+6> git submodule update --remote a_submodule
+```
