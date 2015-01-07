@@ -202,9 +202,9 @@ Note the history is rewritten, i.e. there are used different commit IDs and usua
 10. Show the common ancestor version of the file _README.md_ when your repository is in a conflict state
 11. Show the version of the current branch of the file _README.md_ when your repository is in a conflict state
 12. Show the version of the file _README.md_ from the branch your are merging in when your repository is in a conflict state
-13. Try to revert the merge and go back to the state before the merge operation
-14. Merge the branch _origin/master_ into the current branch while using the _theirs_ merge strategy, i.e. the changes from _origin/master_ are privileged
-15. Merge the branch _origin/master_ into the current branch while using the _ours_ merge strategy, i.e. the changes from the current branch are privileged
+13. Merge the branch _origin/master_ into the current branch while using the _theirs_ merge strategy, i.e. the changes from _origin/master_ are privileged
+14. Merge the branch _origin/master_ into the current branch while using the _ours_ merge strategy, i.e. the changes from the current branch are privileged
+15. Try to revert the merge and go back to the state before the merge operation
 16. Delete the local branch _new\_branch_
 17. Delete the remote branch _new\_branch_ (the local branch remains)
 18. Push the current branch to _origin/new\_branch_
